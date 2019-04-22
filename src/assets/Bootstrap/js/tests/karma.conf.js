@@ -13,13 +13,13 @@ module.exports = (config) => {
       'karma-qunit',
       'karma-detect-browsers'
     ],
-    // list of files / patterns to load in the browser
+    // list of tripImageFile / patterns to load in the browser
     files: [
       jqueryFile,
       'assets/js/vendor/popper.min.js',
       'js/dist/util.js',
       'js/dist/tooltip.js',
-      'js/dist/!(util|index|tooltip).js', // include all of our js/dist files except util.js, index.js and tooltip.js
+      'js/dist/!(util|index|tooltip).js', // include all of our js/dist tripImageFile except util.js, index.js and tooltip.js
       'js/tests/unit/*.js'
     ],
     reporters: ['dots'],

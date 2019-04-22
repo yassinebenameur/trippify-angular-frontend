@@ -1798,7 +1798,7 @@
 		meridiemParse: defaultLocaleMeridiemParse
 	};
 
-// internal storage for locale config files
+// internal storage for locale config tripImageFile
 	var locales = {};
 	var localeFamilies = {};
 	var globalLocale;

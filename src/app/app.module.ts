@@ -9,9 +9,11 @@ import {FeedComponent} from './feed/feed.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {UserService} from './shared/services/user.service';
+import {FileService} from './shared/services/file.service';
 import {StorageService} from './shared/services/storage.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TripService} from './shared/services/trip.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,15 @@ import {TripService} from './shared/services/trip.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [
     UserService,
     StorageService,
-    TripService
+    TripService,
+    FileService
   ],
   bootstrap: [AppComponent]
 })

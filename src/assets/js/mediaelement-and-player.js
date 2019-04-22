@@ -923,7 +923,7 @@ mejs.MediaElementDefaults = {
 	flashScriptAccess: 'sameDomain',
 	// turns on the smoothing filter in Flash
 	enablePluginSmoothing: false,
-	// enabled pseudo-streaming (seek) on .mp4 files
+	// enabled pseudo-streaming (seek) on .mp4 tripImageFile
 	enablePseudoStreaming: false,
 	// start query parameter sent to server for pseudo-streaming
 	pseudoStreamingStartQueryParam: 'start',

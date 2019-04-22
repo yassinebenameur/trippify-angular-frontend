@@ -32,9 +32,9 @@ function findUnusedVars(dir) {
   // A variable to handle success/failure message in this function
   let unusedVarsFound = false
 
-  // Array of all Sass files' content
+  // Array of all Sass tripImageFile' content
   const sassFiles = glob.sync(path.join(dir, '**/*.scss'))
-  // String of all Sass files' content
+  // String of all Sass tripImageFile' content
   let sassFilesString = ''
 
   sassFiles.forEach((file) => {

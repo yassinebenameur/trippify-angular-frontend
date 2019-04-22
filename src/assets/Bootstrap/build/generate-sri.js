@@ -2,7 +2,7 @@
 
 /*!
  * Script to generate SRI hashes for use in our docs.
- * Remember to use the same vendor files as the CDN ones,
+ * Remember to use the same vendor tripImageFile as the CDN ones,
  * otherwise the hashes won't match!
  *
  * Copyright 2017-2018 The Bootstrap Authors
@@ -21,7 +21,7 @@ sh.config.fatal = true
 
 const configFile = path.join(__dirname, '../_config.yml')
 
-// Array of objects which holds the files to generate SRI hashes for.
+// Array of objects which holds the tripImageFile to generate SRI hashes for.
 // `file` is the path from the root folder
 // `configPropertyName` is the _config.yml variable's name of the file
 const files = [
