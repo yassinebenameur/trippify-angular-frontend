@@ -5,6 +5,8 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {LoginComponent} from './login/login.component';
 import {FeedComponent} from './feed/feed.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import {PostComponent} from "./post/post.component";
+import {TripDetailsComponent} from "./trip-details/trip-details.component";
 
 
 export const routes: Routes = [
@@ -20,6 +22,10 @@ export const routes: Routes = [
       {
         path: 'user-profile',
         component: UserProfileComponent
+      },
+      {
+        path: 'trip-details',
+        component: TripDetailsComponent
       }
       ],
   },

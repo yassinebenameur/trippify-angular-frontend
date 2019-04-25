@@ -14,6 +14,8 @@ import {StorageService} from './shared/services/storage.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TripService} from './shared/services/trip.service';
 import {FormsModule} from '@angular/forms';
+import { PostComponent } from './post/post.component';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {FormsModule} from '@angular/forms';
     LoginComponent,
     FeedComponent,
     UserProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PostComponent,
+    TripDetailsComponent
   ],
   imports: [
     BrowserModule,
