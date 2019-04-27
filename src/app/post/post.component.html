@@ -1,119 +1,82 @@
-<div class="ui-block">
 
 
-  <article class="hentry post searches-item">
-
-    <div class="post__author author vcard inline-items">
-      <img src="../assets/img/avatar75-sm.jpg" alt="author">
-
-      <div class="author-date">
-        <a class="h6 post__author-name fn" href="02-ProfilePage.html">Dave Marinara</a>
-        <div class="country">San Francisco, CA</div>
+<li class="comment-item">
+  <div class="post__author author vcard inline-items">
+    <img src="img/avatar8-sm.jpg" alt="author">
+    <div class="author-date">
+      <a class="h6 post__author-name fn" href="#">Diana Jameson</a>
+      <div class="post__date">
+        <time class="published" datetime="2017-03-24T18:18">
+          DAY {{post.day}}
+        </time>
       </div>
-
-      <span class="notification-icon">
-								<a href="#" class="accept-request">
-									<span class="icon-add without-text">
-										<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-									</span>
-								</a>
-					
-								<a href="#" class="accept-request chat-message">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-								</a>
-							</span>
-
-      <div class="more">
-        <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-        <ul class="more-dropdown">
-          <li>
-            <a href="#">Edit Post</a>
-          </li>
-          <li>
-            <a href="#">Delete Post</a>
-          </li>
-          <li>
-            <a href="#">Turn Off Notifications</a>
-          </li>
-          <li>
-            <a href="#">Select as Featured</a>
-          </li>
-        </ul>
-      </div>
-
     </div>
-
-    <p class="user-description">
-      <span class="title">About Me:</span> I’m a photographer that travels around the world to find all the best vacation spots!
-      <span class="title">Favourite Music Bands / Artists:</span> Iron Maid, DC/AC, Megablow, The Ill, Kung...
-    </p>
-
-    <div class="post-block-photo js-zoom-gallery">
-      <a href="../assets/img/post-photo1.jpg" class="col col-3-width"><img src="../assets/img/post-photo1.jpg" alt="photo"></a>
-      <a href="../assets/img/post-photo2.jpg" class="col col-3-width"><img src="../assets/img/post-photo2.jpg" alt="photo"></a>
-      <a href="../assets/img/post-photo7.jpg" class="more-photos col-3-width">
-        <img src="../assets/img/post-photo7.jpg" alt="photo">
-        <span class="h2">+2.6K</span>
-      </a>
-    </div>
-
-    <div class="post-additional-info">
-
-      <ul class="friends-harmonic">
+    <div class="more">
+      <svg class="olymp-three-dots-icon">
+        <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+      </svg>
+      <ul class="more-dropdown">
         <li>
-          <a href="#">
-            <img src="../assets/img/friend-harmonic7.jpg" alt="friend">
-          </a>
+          <a href="javascript:void(0);"  (click)="onClickEditPost()">Edit Post</a>
         </li>
         <li>
-          <a href="#">
-            <img src="../assets/img/friend-harmonic8.jpg" alt="friend">
-          </a>
+          <a href="#">Delete Post</a>
         </li>
         <li>
-          <a href="#">
-            <img src="../assets/img/friend-harmonic11.jpg" alt="friend">
-          </a>
+          <a href="#">Turn Off Notifications</a>
         </li>
         <li>
-          <a href="#">
-            <img src="../assets/img/friend-harmonic10.jpg" alt="friend">
-          </a>
-        </li>
-        <li>
-          <a href="#" class="all-users">+13</a>
+          <a href="#">Select as Featured</a>
         </li>
       </ul>
-      <div class="names-people-likes">
-        You and Dave have
-        <a href="#">8 Friends in Common</a>
-      </div>
-
-      <div class="friend-count">
-        <a href="#" class="friend-count-item">
-          <div class="h6">120</div>
-          <div class="title">Friends</div>
-        </a>
-        <a href="#" class="friend-count-item">
-          <div class="h6">4.3K</div>
-          <div class="title">Photos</div>
-        </a>
-        <a href="#" class="friend-count-item">
-          <div class="h6">8</div>
-          <div class="title">Videos</div>
-        </a>
-      </div>
-
     </div>
 
-  </article>
+  </div>
 
-  <!-- Comments -->
+  <ng-container *ngIf="editMode">
+  <form class="form-group label-floating">
+    <label class="control-label">Title</label>
+    <input class="form-control" placeholder="" type="text" [(ngModel)]="post.titre">
+    <span class="material-input"></span></form>
 
-  <ul class="comments-list">
-    <li class="comment-item">
+  <form class="form-group label-floating">
+    <label class="control-label">Description</label>
+    <input class="form-control" placeholder="" type="text"  [(ngModel)]="post.description">
+    <span class="material-input"></span></form>
+
+    <div class="align-right">
+
+      <a  class="btn btn-md-2 btn-border-think custom-color c-grey">Cancel</a>
+
+      <a  class="btn btn-primary btn-md-2">Save Post changes</a>
+
+    </div>
+  </ng-container>
+
+
+  <p *ngIf="!editMode">Here’s the first photo of our incredible photoshoot from yesterday. If you like it please say so and tel me
+    what you wanna see next!</p>
+
+
+  <div class="post-block-photo js-zoom-gallery" *ngIf="!editMode">
+    <a href="../assets/img/top-header1.jpg" class="col col-3-width"><img src="../assets/img/top-header1.jpg"
+                                                                         alt="photo"></a>
+    <a href="../assets/img/top-header1.jpg" class="col col-3-width"><img src="../assets/img/top-header1.jpg"
+                                                                         alt="photo"></a>
+    <a href="../assets/img/top-header1.jpg" class="more-photos col-3-width">
+      <img src="../assets/img/top-header1.jpg" alt="photo">
+      <span class="h2">+2.6K</span>
+    </a>
+  </div >
+
+
+  <ul class="comments-list" *ngIf="!editMode">
+    <p *ngIf="!post.comments || post.comments.length==0"> Still no comments on this post.</p>
+
+
+    <li class="comment-item"  *ngFor="let comment of post.comments">
       <div class="post__author author vcard inline-items">
-        <img src="../assets/img/author-page.jpg" alt="author">
+        <img src="../assets/img/top-header1.jpg" alt="author">
 
         <div class="author-date">
           <a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
@@ -124,42 +87,21 @@
           </div>
         </div>
 
-        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+        <a href="#" class="more">
+          <svg class="olymp-three-dots-icon">
+            <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+          </svg>
+        </a>
 
       </div>
 
       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
 
       <a href="#" class="post-add-icon inline-items">
-        <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+        <svg class="olymp-heart-icon">
+          <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+        </svg>
         <span>3</span>
-      </a>
-      <a href="#" class="reply">Reply</a>
-    </li>
-    <li class="comment-item">
-      <div class="post__author author vcard inline-items">
-        <img src="../assets/img/avatar1-sm.jpg" alt="author">
-
-        <div class="author-date">
-          <a class="h6 post__author-name fn" href="#">Mathilda Brinker</a>
-          <div class="post__date">
-            <time class="published" datetime="2004-07-24T18:18">
-              1 hour ago
-            </time>
-          </div>
-        </div>
-
-        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-
-      </div>
-
-      <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum
-        quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-      </p>
-
-      <a href="#" class="post-add-icon inline-items">
-        <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
-        <span>8</span>
       </a>
       <a href="#" class="reply">Reply</a>
     </li>
@@ -167,22 +109,20 @@
 
   <!-- ... end Comments -->
 
-  <a href="#" class="more-comments">View more comments <span>+</span></a>
-
 
   <!-- Comment Form  -->
 
-  <form class="comment-form inline-items">
+  <form class="comment-form inline-items" *ngIf="!editMode">
 
     <div class="post__author author vcard inline-items">
-      <img src="../assets/img/author-page.jpg" alt="author">
+      <img [src]="user.imageUrl" alt="author">
 
       <div class="form-group with-icon-right ">
         <textarea class="form-control" placeholder=""></textarea>
         <div class="add-options-message">
           <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
             <svg class="olymp-camera-icon">
-              <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+              <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
             </svg>
           </a>
         </div>
@@ -194,6 +134,10 @@
     <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
 
   </form>
+</li>
 
-  <!-- ... end Comment Form  -->
-</div>
+
+
+
+
+

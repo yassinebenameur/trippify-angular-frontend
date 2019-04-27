@@ -1,4 +1,5 @@
 import {Client} from './client';
+import {Post} from './post';
 
 export class Trip {
   id: number;
@@ -8,4 +9,9 @@ export class Trip {
   endDate: Date;
   traveller: Client;
   imageUrl: string;
+
+  nbComments: number;
+  nbViews: number;
+  nbLikes: number;
+  posts: Post[];
 }

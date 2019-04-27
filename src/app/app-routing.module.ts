@@ -24,7 +24,7 @@ export const routes: Routes = [
         component: UserProfileComponent
       },
       {
-        path: 'trip-details',
+        path: 'trip-details/:id',
         component: TripDetailsComponent
       }
       ],

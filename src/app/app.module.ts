@@ -13,9 +13,10 @@ import {FileService} from './shared/services/file.service';
 import {StorageService} from './shared/services/storage.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TripService} from './shared/services/trip.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PostComponent } from './post/post.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { TripListComponent } from './trip-list/trip-list.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { TripDetailsComponent } from './trip-details/trip-details.component';
     UserProfileComponent,
     NotFoundComponent,
     PostComponent,
-    TripDetailsComponent
+    TripDetailsComponent,
+    TripListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [

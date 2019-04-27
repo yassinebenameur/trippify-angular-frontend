@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Post} from '../shared/models/post';
+import {UserService} from '../shared/services/user.service';
+import {Client} from '../shared/models/client';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  private user: Client;
+  @Input() post: Post;
+  editMode = false;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
+
+    this.user = this.userService.readUser();
+
+  }
+
+
+  onClickEditPost() {
+    this.editMode = true;
   }
 
 }
