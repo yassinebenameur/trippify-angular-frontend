@@ -1,8 +1,7 @@
 
 
-<li class="comment-item">
   <div class="post__author author vcard inline-items">
-    <img src="img/avatar8-sm.jpg" alt="author">
+    <img [src]="user.imageUrl" alt="author">
     <div class="author-date">
       <a class="h6 post__author-name fn" href="#">Diana Jameson</a>
       <div class="post__date">
@@ -17,64 +16,57 @@
       </svg>
       <ul class="more-dropdown">
         <li>
-          <a href="javascript:void(0);"  (click)="onClickEditPost()">Edit Post</a>
+          <a href="ja" (click)="onClickEditPost()">Edit Post</a>
         </li>
         <li>
-          <a href="#">Delete Post</a>
+          <a href>Delete Post</a>
         </li>
-        <li>
-          <a href="#">Turn Off Notifications</a>
-        </li>
-        <li>
-          <a href="#">Select as Featured</a>
-        </li>
+
       </ul>
     </div>
 
   </div>
 
   <ng-container *ngIf="editMode">
-  <form class="form-group label-floating">
-    <label class="control-label">Title</label>
-    <input class="form-control" placeholder="" type="text" [(ngModel)]="post.titre">
-    <span class="material-input"></span></form>
+    <form class="form-group label-floating">
+      <label class="control-label">Title</label>
+      <input class="form-control" placeholder="" type="text" [(ngModel)]="post.titre">
+      <span class="material-input"></span></form>
 
-  <form class="form-group label-floating">
-    <label class="control-label">Description</label>
-    <input class="form-control" placeholder="" type="text"  [(ngModel)]="post.description">
-    <span class="material-input"></span></form>
+    <form class="form-group label-floating">
+      <label class="control-label">Description</label>
+      <input class="form-control" placeholder="" type="text" [(ngModel)]="post.description">
+      <span class="material-input"></span></form>
 
     <div class="align-right">
 
-      <a  class="btn btn-md-2 btn-border-think custom-color c-grey">Cancel</a>
+      <a class="btn btn-md-2 btn-border-think custom-color c-grey">Cancel</a>
 
-      <a  class="btn btn-primary btn-md-2">Save Post changes</a>
+      <a class="btn btn-primary btn-md-2">Save Post changes</a>
 
     </div>
   </ng-container>
 
 
-  <p *ngIf="!editMode">Here’s the first photo of our incredible photoshoot from yesterday. If you like it please say so and tel me
+  <p *ngIf="!editMode">Here’s the first photo of our incredible photoshoot from yesterday. If you like it please say so
+    and tel me
     what you wanna see next!</p>
 
 
   <div class="post-block-photo js-zoom-gallery" *ngIf="!editMode">
-    <a href="../assets/img/top-header1.jpg" class="col col-3-width"><img src="../assets/img/top-header1.jpg"
-                                                                         alt="photo"></a>
-    <a href="../assets/img/top-header1.jpg" class="col col-3-width"><img src="../assets/img/top-header1.jpg"
-                                                                         alt="photo"></a>
-    <a href="../assets/img/top-header1.jpg" class="more-photos col-3-width">
-      <img src="../assets/img/top-header1.jpg" alt="photo">
-      <span class="h2">+2.6K</span>
-    </a>
-  </div >
+    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
+    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
+    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
+
+
+  </div>
 
 
   <ul class="comments-list" *ngIf="!editMode">
     <p *ngIf="!post.comments || post.comments.length==0"> Still no comments on this post.</p>
 
 
-    <li class="comment-item"  *ngFor="let comment of post.comments">
+    <li class="comment-item" *ngFor="let comment of post.comments">
       <div class="post__author author vcard inline-items">
         <img src="../assets/img/top-header1.jpg" alt="author">
 
@@ -111,7 +103,6 @@
 
 
   <!-- Comment Form  -->
-
   <form class="comment-form inline-items" *ngIf="!editMode">
 
     <div class="post__author author vcard inline-items">
@@ -134,7 +125,6 @@
     <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
 
   </form>
-</li>
 
 
 

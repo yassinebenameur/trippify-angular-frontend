@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PostComponent } from './post/post.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripListComponent } from './trip-list/trip-list.component';
+import {PostService} from './shared/services/post.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TripListComponent } from './trip-list/trip-list.component';
     UserService,
     StorageService,
     TripService,
-    FileService
+    FileService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

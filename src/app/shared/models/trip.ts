@@ -1,5 +1,6 @@
 import {Client} from './client';
 import {Post} from './post';
+import {Trip_day} from './trip_day';
 
 export class Trip {
   id: number;
@@ -13,5 +14,6 @@ export class Trip {
   nbComments: number;
   nbViews: number;
   nbLikes: number;
-  posts: Post[];
+  trip_days: Trip_day[];
+  daysNumber: number;
 }
