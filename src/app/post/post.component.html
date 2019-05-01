@@ -1,130 +1,133 @@
+<div class="post__author author vcard inline-items">
+  <img [src]="user.imageUrl" alt="author">
+  <div class="author-date">
+    <a class="h6 post__author-name fn" href="#">{{post.postMaker.name}}</a>
+    <div class="post__date">
+      <time class="published">
 
+        {{post.place}}    </time>
+    </div>
+  </div>
+  <div class="more">
+    <svg class="olymp-three-dots-icon">
+      <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+    </svg>
+    <ul class="more-dropdown">
+      <li>
+        <a (click)="onClickEditPost()">Edit Post</a>
+      </li>
+      <li>
+        <a href>Delete Post</a>
+      </li>
+
+    </ul>
+  </div>
+
+</div>
+
+
+<ng-container *ngIf="editMode">
+  <form class="form-group label-floating">
+    <label class="control-label">Title</label>
+    <input class="form-control" type="text" [value]="post.titre" [(ngModel)]="post.titre" name="titre">
+    <span class="material-input"></span></form>
+
+  <form class="form-group label-floating">
+    <label class="control-label">Description</label>
+    <input class="form-control" type="text" [value]="post.description"  name="description" [(ngModel)]="post.description">
+    <span class="material-input"></span></form>
+
+  <div class="align-right">
+
+    <a class="btn btn-md-2 btn-border-think custom-color c-grey" (click)="editMode=false">Cancel</a>
+
+    <a class="btn btn-primary btn-md-2">Save Post changes</a>
+
+  </div>
+</ng-container>
+
+
+<p *ngIf="!editMode">{{post.description}}</p>
+
+
+<div class="post-block-photo js-zoom-gallery" >
+  <a *ngFor="let photo of post.imageUrls" [href]="photo" class="col col-3-width"><img [src]="photo" alt="photo"></a>
+
+</div>
+
+
+<ul class="comments-list" *ngIf="!editMode">
+  <p *ngIf="!post.comments || post.comments.length==0"> Still no comments on this post.</p>
+
+
+  <li class="comment-item" *ngFor="let comment of post.comments">
+    <div class="post__author author vcard inline-items">
+      <img [src]="comment.commentor.imageUrl" alt="author">
+
+      <div class="author-date">
+        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{comment.commentor.name}}</a>
+        <div class="post__date">
+          <time class="published">
+            {{comment.createdDate | timeAgo}}
+          </time>
+        </div>
+      </div>
+
+      <a href="#" class="more">
+        <svg class="olymp-three-dots-icon">
+          <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+        </svg>
+
+        <ul class="more-dropdown">
+          <li>
+            <a>Edit Comment</a>
+          </li>
+          <li>
+            <a href>Delete Comment</a>
+          </li>
+
+        </ul>
+      </a>
+
+
+    </div>
+
+    <p>{{comment.content}}</p>
+
+    <a  class="post-add-icon inline-items">
+      <svg class="olymp-heart-icon">
+        <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+      </svg>
+      <span>0</span>
+    </a>
+  </li>
+</ul>
+
+<!-- ... end Comments -->
+
+
+<!-- Comment Form  -->
+<form class="comment-form inline-items" *ngIf="!editMode" (ngSubmit)="onCommentSubmit()">
 
   <div class="post__author author vcard inline-items">
     <img [src]="user.imageUrl" alt="author">
-    <div class="author-date">
-      <a class="h6 post__author-name fn" href="#">Diana Jameson</a>
-      <div class="post__date">
-        <time class="published" datetime="2017-03-24T18:18">
-          DAY {{post.day}}
-        </time>
-      </div>
-    </div>
-    <div class="more">
-      <svg class="olymp-three-dots-icon">
-        <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-      </svg>
-      <ul class="more-dropdown">
-        <li>
-          <a href="ja" (click)="onClickEditPost()">Edit Post</a>
-        </li>
-        <li>
-          <a href>Delete Post</a>
-        </li>
 
-      </ul>
-    </div>
-
-  </div>
-
-  <ng-container *ngIf="editMode">
-    <form class="form-group label-floating">
-      <label class="control-label">Title</label>
-      <input class="form-control" placeholder="" type="text" [(ngModel)]="post.titre">
-      <span class="material-input"></span></form>
-
-    <form class="form-group label-floating">
-      <label class="control-label">Description</label>
-      <input class="form-control" placeholder="" type="text" [(ngModel)]="post.description">
-      <span class="material-input"></span></form>
-
-    <div class="align-right">
-
-      <a class="btn btn-md-2 btn-border-think custom-color c-grey">Cancel</a>
-
-      <a class="btn btn-primary btn-md-2">Save Post changes</a>
-
-    </div>
-  </ng-container>
-
-
-  <p *ngIf="!editMode">Here’s the first photo of our incredible photoshoot from yesterday. If you like it please say so
-    and tel me
-    what you wanna see next!</p>
-
-
-  <div class="post-block-photo js-zoom-gallery" *ngIf="!editMode">
-    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
-    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
-    <a [href]="user.imageUrl" class="col col-3-width"><img [src]="user.imageUrl" alt="photo"></a>
-
-
-  </div>
-
-
-  <ul class="comments-list" *ngIf="!editMode">
-    <p *ngIf="!post.comments || post.comments.length==0"> Still no comments on this post.</p>
-
-
-    <li class="comment-item" *ngFor="let comment of post.comments">
-      <div class="post__author author vcard inline-items">
-        <img src="../assets/img/top-header1.jpg" alt="author">
-
-        <div class="author-date">
-          <a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
-          <div class="post__date">
-            <time class="published" datetime="2004-07-24T18:18">
-              38 mins ago
-            </time>
-          </div>
-        </div>
-
-        <a href="#" class="more">
-          <svg class="olymp-three-dots-icon">
-            <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+    <div class="form-group with-icon-right ">
+      <input class="form-control" placeholder="Write your comment here ..." name="comment"
+             [(ngModel)]="comment.content">
+      <div class="add-options-message">
+        <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
+          <svg class="olymp-camera-icon">
+            <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
           </svg>
         </a>
-
-      </div>
-
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-
-      <a href="#" class="post-add-icon inline-items">
-        <svg class="olymp-heart-icon">
-          <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-        </svg>
-        <span>3</span>
-      </a>
-      <a href="#" class="reply">Reply</a>
-    </li>
-  </ul>
-
-  <!-- ... end Comments -->
-
-
-  <!-- Comment Form  -->
-  <form class="comment-form inline-items" *ngIf="!editMode">
-
-    <div class="post__author author vcard inline-items">
-      <img [src]="user.imageUrl" alt="author">
-
-      <div class="form-group with-icon-right ">
-        <textarea class="form-control" placeholder=""></textarea>
-        <div class="add-options-message">
-          <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
-            <svg class="olymp-camera-icon">
-              <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-            </svg>
-          </a>
-        </div>
       </div>
     </div>
+  </div>
 
-    <button class="btn btn-md-2 btn-primary">Post Comment</button>
 
-    <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
+</form>
 
-  </form>
 
 
 

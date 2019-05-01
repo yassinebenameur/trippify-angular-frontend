@@ -14,10 +14,14 @@ import {StorageService} from './shared/services/storage.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TripService} from './shared/services/trip.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { PostComponent } from './post/post.component';
-import { TripDetailsComponent } from './trip-details/trip-details.component';
-import { TripListComponent } from './trip-list/trip-list.component';
+import {PostComponent} from './post/post.component';
+import {TripDetailsComponent} from './trip-details/trip-details.component';
+import {TripListComponent} from './trip-list/trip-list.component';
 import {PostService} from './shared/services/post.service';
+import {CommentService} from './shared/services/comment.service';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {NzTimePickerModule} from 'ng-zorro-antd';
+
 
 @NgModule({
   declarations: [
@@ -29,14 +33,16 @@ import {PostService} from './shared/services/post.service';
     NotFoundComponent,
     PostComponent,
     TripDetailsComponent,
-    TripListComponent
+    TripListComponent,
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzTimePickerModule
 
   ],
   providers: [
@@ -44,7 +50,8 @@ import {PostService} from './shared/services/post.service';
     StorageService,
     TripService,
     FileService,
-    PostService
+    PostService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

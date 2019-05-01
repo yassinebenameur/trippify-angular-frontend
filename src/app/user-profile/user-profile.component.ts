@@ -8,7 +8,6 @@ import {FileService} from '../shared/services/file.service';
 
 
 
-
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -27,7 +26,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.readUser();
     console.log(this.user);
+
   }
-
-
 }

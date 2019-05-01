@@ -5,6 +5,9 @@ import {TripService} from '../shared/services/trip.service';
 import {Utils} from '../shared/utils';
 import {Post} from '../shared/models/post';
 import {PostService} from '../shared/services/post.service';
+import {Config} from '../shared/config';
+import {UserService} from '../shared/services/user.service';
+import {injectTemplateRef} from '@angular/core/src/render3/view_engine_compatibility';
 
 declare var require: any;
 
@@ -26,10 +29,13 @@ export class TripDetailsComponent implements OnInit {
   trip = new Trip();
   post = new Post();
   selectedDay_id: number;
+  time = '';
+  am_pm = '';
 
   constructor(private route: ActivatedRoute,
               private tripService: TripService,
-              private postService: PostService
+              private postService: PostService,
+              private userService: UserService
   ) {
     this.route.params.subscribe(params => {
       this.trip_id = params.id;
@@ -39,16 +45,34 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit() {
     console.log(this.trip_id);
     this.getTripById(this.trip_id);
+    this.initSelect();
+    const baseContext = this;
+    Utils.initializeUploadFile(Config.baseUrl + '/uploadMultipleFiles', this.userService.getToken(), '.file-input-post', true, true, 6, false);
+
+    const urls = [];
+    jQuery('.file-input-post').on('filebatchuploadsuccess', (event, data) => {
+      data.response.forEach(item => {
+        urls.push(item.fileDownloadUri);
+      });
+    });
+    baseContext.post.imageUrls = urls;
+
   }
 
   getTripById(id: string) {
     this.tripService.getTripById(id).subscribe(
       (data) => {
         this.trip = data;
+
       },
       (error) => {
       }
     );
+  }
+
+  initSelect() {
+    jQuery('.selectpicker').selectpicker();
+
   }
 
   arrayOne(n: number): any[] {
@@ -56,15 +80,28 @@ export class TripDetailsComponent implements OnInit {
   }
 
   onOpenPostModalClick(item: any) {
+    console.log('***opened modal******');
     this.post.day = item.dayNumber;
     this.selectedDay_id = item.id;
-    console.log(item);
+    console.log('selected DAY ', item.id);
   }
 
   onAddPostClick() {
+    console.log(this.time + ' ' + this.am_pm);
+    if (this.am_pm != '' && this.time != '') {
+      this.post.time = this.time + ' ' + this.am_pm;
+    }
+    console.log(this.post.time);
     console.log(this.post);
     this.postService.addPost(this.post, this.selectedDay_id).subscribe(
       (data) => {
+        console.log(data);
+        console.log(this.trip.trip_days);
+        console.log(this.selectedDay_id);
+        console.log('DAYS', this.trip.trip_days.findIndex(item => item.id == this.selectedDay_id));
+        const day_index = this.trip.trip_days.findIndex(item => item.id == this.selectedDay_id);
+        this.trip.trip_days[day_index] = data;
+
         new Noty({
           theme: 'metroui',
           type: 'success',
@@ -73,6 +110,8 @@ export class TripDetailsComponent implements OnInit {
           progressBar: true,
           text: 'Your post is saved !'
         }).show();
+
+
       }
     );
   }

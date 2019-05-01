@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -10,13 +9,12 @@
 
           <div class="photo-album-wrapper">
 
-
             <div class="photo-album-item-wrap col-4-width" *ngFor="let trip of trips">
 
 
               <div class="photo-album-item" data-mh="album-item">
                 <div class="photo-item">
-                  <img *ngIf="trip.imageUrl" [src]="trip.imageUrl" alt="photo" style="width: 332px;height: 284px;">
+                  <img *ngIf="trip.imageUrl" [src]="trip.imageUrl" alt="photo" style="height: 284px;">
                   <img *ngIf="!trip.imageUrl" src="../assets/img/photo-album1.jpg" alt="photo"
                        style="width: 332px;height: 284px;">
                   <div class="overlay overlay-dark"></div>
@@ -55,15 +53,6 @@
 
                   <div class="swiper-container" data-slide="fade">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <ul class="friends-harmonic">
-                          <li>
-                            <a href="#">
-                              <img [src]="trip.traveller.imageUrl" style="width: 28px" alt="friend">
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
 
                       <div class="swiper-slide">
                         <div class="friend-count" data-swiper-parallax="-500">
@@ -81,6 +70,17 @@
                           </a>
                         </div>
                       </div>
+
+                      <div class="swiper-slide">
+                        <ul class="friends-harmonic">
+                          <li>
+                            <a href="#">
+                              <img [src]="trip.traveller.imageUrl" alt="friend">
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
                     </div>
 
                     <!-- If we need pagination -->
@@ -210,7 +210,7 @@
               <img src="../assets/img/author-page.jpg" alt="author">
 
               <div class="author-date">
-                <a class="h6 post__author-name fn" >James Spiegel</a>
+                <a class="h6 post__author-name fn">James Spiegel</a>
                 <div class="post__date">
                   <time class="published" datetime="2017-03-24T18:18">
                     2 hours ago
@@ -939,8 +939,16 @@
           <input class="form-control" placeholder="" value="" type="text" [(ngModel)]="newTrip.titre">
         </div>
 
+          <div class="form-group file-uploader">
+            <div class="file-loading">
+              <input class=" file-input-trip" type="file"  name="file" data-theme="explorer-fas">
+            </div>
+            <br>
+
+          </div>
+
         <div class="form-group date-time-picker label-floating">
-          <label class="control-label">Trip start date</label>
+          <label class="control-label">Trip period</label>
           <input name="datetimepicker" id="startDate">
           <span class="input-group-addon">
 					<svg class="olymp-calendar-icon icon"><use
@@ -948,37 +956,14 @@
 				</span>
         </div>
 
-        <div class="form-group date-time-picker label-floating">
-          <label class="control-label">Trip end date</label>
-          <input name="datetimepicker" id="endDate">
-          <span class="input-group-addon">
-					<svg class="olymp-calendar-icon icon"><use
-            xlink:href="assets/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-				</span>
-        </div>
-        <form class="form-group with-button">
-          <input class="form-control" (change)="fileChange($event)" placeholder="Choose an image for the trip"
-                 type="file" id="file">
 
-          <button class="bg-grey">
-            <svg class="olymp-computer-icon">
-              <use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
-            </svg>
-          </button>
-
-          <span class="material-input"></span></form>
 
         <div class="form-group label-floating">
           <label class="control-label">Event Description</label>
           <textarea class="form-control" placeholder="" [(ngModel)]="newTrip.description"></textarea>
         </div>
 
-        <div class="form-group">
-          <div class="file-upload">
-            <label for="upload" class="file-upload__label">Choose an image for the trip</label>
-            <input id="upload" class="file-upload__input" (change)="fileChange($event)" type="file" name="file-upload">
-          </div>
-        </div>
+
 
 
         <button class="btn btn-breez btn-lg full-width" (click)="onCreateTripClick()">Create Trip</button>

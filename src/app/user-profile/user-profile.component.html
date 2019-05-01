@@ -83,9 +83,12 @@
             </div>
           </div>
           <div class="top-header-author">
-            <a href="02-ProfilePage.html" class="author-thumb">
+            <div class="js-zoom-gallery">
+            <a  [href]="user.imageUrl" class="author-thumb">
               <img [src]="user.imageUrl" alt="author" style="height: 124px; width: 124px">
             </a>
+            </div>
+
             <div class="author-content">
               <a href="02-ProfilePage.html" class="h4 author-name">{{user.name}}</a>
               <div class="country">San Francisco, CA</div>

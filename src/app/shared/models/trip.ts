@@ -16,4 +16,5 @@ export class Trip {
   nbLikes: number;
   trip_days: Trip_day[];
   daysNumber: number;
+  createdDate: Date;
 }

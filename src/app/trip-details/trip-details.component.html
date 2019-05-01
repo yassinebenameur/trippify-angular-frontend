@@ -8,7 +8,7 @@
               <use xlink:href="svg-icons/sprites/icons.svg#olymp-trophy-icon"></use>
             </svg>
           </div>
-          <h6 class="title">Trip name : {{trip.titre}}</h6>
+          <h6 class="title">Trip name : {{trip?.titre}}</h6>
           <a href="#" class="more">
             <svg class="olymp-three-dots-icon">
               <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
@@ -35,7 +35,7 @@
 
             <div class="author-date">
               <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{trip?.traveller.name}}</a>
-              <div class="country">San Francisco, CA</div>
+              <div class="country"> {{trip?.createdDate | timeAgo}}</div>
             </div>
 
             <span class="notification-icon">
@@ -75,16 +75,18 @@
           </div>
         </article>
 
-        <ng-container *ngFor="let trip_day of trip.trip_days; let i = index;">
+
+        <ng-container *ngFor="let trip_day of trip?.trip_days; let i = index;">
           <div class="today-events calendar">
 
 
             <div class="today-events-thumb">
               <div class="date">
                 <div class="day-week">Day</div>
-                <div class="day-number">{{trip_day.dayNumber}}</div>
-                <div class="month-year">{{trip_day.date}}</div>
+                <div class="day-number">{{trip_day?.dayNumber}}</div>
+                <div class="month-year">{{trip_day?.date}}</div>
               </div>
+
             </div>
 
 
@@ -96,15 +98,17 @@
                     <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-plus-icon"></use>
                   </svg>
                 </a>
+
               </div>
+
 
               <div [id]="'accordionDay'+i" role="tablist" aria-multiselectable="true" class="day-event" data-month="12"
                    data-day="2">
-                <ng-container *ngFor="let post of trip_day.posts;let j= index">
+                <ng-container *ngFor="let post of trip_day.posts ;let j= index; " >
                   <div class="card">
                     <div class="card-header" role="tab" id="headingOne-1">
                       <div class="event-time">
-                        <time datetime="2004-07-24T18:18">9:00am</time>
+                        <time datetime="2004-07-24T18:18">{{post.time}}</time>
                         <div class="more">
                           <svg class="olymp-three-dots-icon">
                             <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
@@ -132,16 +136,28 @@
                       </h5>
                     </div>
 
-                    <div [id]="'collapseOne'+i+'_'+j"  role="tabpanel" aria-labelledby="headingOne"
+
+                    <div [id]="'collapseOne'+i+'_'+j" role="tabpanel" class="collapse" aria-labelledby="headingOne"
                          style="">
                       <div class="card-body">
-                        **************************
+                        <app-post [post]="post"></app-post>
+
+
                       </div>
                       <div class="place inline-items">
-                        <svg class="olymp-add-a-place-icon">
-                          <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                        </svg>
-                        <span>Daydreamz Agency</span>
+
+
+                        <a href="#" class="btn btn-control">
+                          <svg class="olymp-like-post-icon">
+                            <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+                          </svg>
+                        </a>
+
+                        <a href="#" class="btn btn-control">
+                          <svg class="olymp-comments-post-icon">
+                            <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
+                          </svg>
+                        </a>
                       </div>
 
                     </div>
@@ -185,23 +201,42 @@
           <input class="form-control" placeholder="" value="" type="text" name="titre" [(ngModel)]="post.titre">
         </div>
 
+        <div class="form-group label-floating">
+          <label class="control-label">Place</label>
+          <input class="form-control" placeholder="" value="" type="text" name="titre" [(ngModel)]="post.place">
+        </div>
 
         <div class="row">
           <div class="col col-lg-3 col-md-3 col-sm-12 col-12">
-            <div class="form-group label-floating">
+            <div class="form-group label-floating is-select">
               <label class="control-label">Time</label>
-              <input class="form-control" placeholder="" value="09:00" type="text">
+              <select class="selectpicker form-control" [(ngModel)]="time">
+                <option value="00:00">0:00</option>
+                <option value="01:00">1:00</option>
+                <option value="02:00">2:00</option>
+                <option value="03:00">3:00</option>
+                <option value="04:00">4:00</option>
+                <option value="05:00">5:00</option>
+                <option value="06:00">6:00</option>
+                <option value="07:00">7:00</option>
+                <option value="08:00">8:00</option>
+                <option value="09:00">9:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+              </select>
             </div>
           </div>
           <div class="col col-lg-3 col-md-3 col-sm-12 col-12">
             <div class="form-group label-floating is-select">
               <label class="control-label">AM-PM</label>
-              <select class="selectpicker form-control">
-                <option value="MA">AM</option>
-                <option value="FE">PM</option>
+              <select class="selectpicker form-control" [(ngModel)]="am_pm">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
               </select>
             </div>
           </div>
+
+
           <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="form-group label-floating ">
               <label class="control-label">Day</label>
@@ -211,8 +246,16 @@
 
         </div>
 
+        <div class="form-group file-uploader">
+          <div class="file-loading">
+            <input class=" file-input-post" multiple="multiple" type="file"  name="files" data-theme="explorer-fas">
+          </div>
+          <br>
+
+        </div>
+
         <div class="form-group label-floating">
-          <label class="control-label">Event Description</label>
+          <label class="control-label">Post Description</label>
           <textarea class="form-control" [(ngModel)]="post.description" name="description" placeholder="">
 					</textarea>
         </div>

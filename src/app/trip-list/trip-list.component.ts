@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Trip} from '../shared/models/trip';
 import {TripService} from '../shared/services/trip.service';
 import {FileService} from '../shared/services/file.service';
+import {Utils} from '../shared/utils';
+import {Config} from '../shared/config';
+import {UserService} from '../shared/services/user.service';
 
 
 declare var require: any;
@@ -19,15 +22,25 @@ declare let jQuery: any;
 export class TripListComponent implements OnInit {
 
 
-  trips: Trip[];
+  trips: Trip[] = [];
   newTrip: Trip = new Trip();
 
   constructor(private tripService: TripService,
-              private fileService: FileService) {
+              private fileService: FileService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
     this.getAllTrips();
+    this.initDatePicker();
+    const baseContext = this;
+    Utils.initializeUploadFile(Config.baseUrl + '/uploadFile', this.userService.getToken(), '.file-input-trip', true, true, 1);
+    jQuery('.file-input-trip').on('fileuploaded', (event, data, previewId, index) => {
+
+      if (data.response) {
+        baseContext.newTrip.imageUrl = data.response.fileDownloadUri;
+      }
+    });
   }
 
   getAllTrips() {
@@ -39,15 +52,36 @@ export class TripListComponent implements OnInit {
     );
   }
 
+  initDatePicker() {
+    const baseContext = this;
+    jQuery('#startDate').daterangepicker({
+
+        autoUpdateInput: true,
+        singleDatePicker: false,
+        showControls: true,
+        showDropdowns: true,
+        autoApply: true,
+
+        locale: {
+          format: 'DD/MM/YYYY'
+        }
+      }, function (start, end, label) {
+        baseContext.newTrip.startDate = start.format('DD/MM/YYYY');
+        baseContext.newTrip.endDate = end.format('DD/MM/YYYY');
+
+      }
+    );
+
+
+  }
+
 
   onCreateTripClick() {
 
-
-    this.newTrip.startDate = jQuery('#startDate').val();
-    this.newTrip.endDate = jQuery('#endDate').val();
     console.log(this.newTrip);
     this.tripService.addTrip(this.newTrip).subscribe(
-      () => {
+      (data) => {
+        this.trips = data;
         this.closeModal('#add-trip');
         this.initTrip();
         new Noty({
@@ -98,5 +132,4 @@ export class TripListComponent implements OnInit {
     }
 
   }
-
 }

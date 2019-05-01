@@ -5836,7 +5836,7 @@ figure {
     fill: #ff5e3a; }
 
 .create-event {
-  width: 470px; }
+  width: 800px; }
   .create-event .icon-close {
     margin-top: 0;
     margin-right: 0; }
@@ -11212,7 +11212,7 @@ select.selectpicker {
   color: inherit;
   background-color: #fff;
   border-radius: 4px;
-  width: 278px;
+  /*width: 278px;*/
   padding: 4px;
   margin-top: 1px;
   top: 100px;
@@ -11279,7 +11279,7 @@ select.selectpicker {
   border-top: 6px solid #fff; }
 
 .daterangepicker.dropdown-menu {
-  max-width: none;
+ /* max-width: none;*/
   z-index: 3001; }
 
 .daterangepicker.single .ranges, .daterangepicker.single .calendar {
@@ -11290,7 +11290,7 @@ select.selectpicker {
 
 .daterangepicker .calendar {
   display: none;
-  max-width: 270px;
+ /* max-width: 270px;*/
   margin: 4px; }
 
 .daterangepicker .calendar.single .calendar-table {
@@ -11564,7 +11564,7 @@ select.selectpicker {
   border-radius: 50%; }
 
 .daterangepicker {
-  width: 270px;
+  /*width: 270px;*/
   border-color: #e6ecf5;
   box-shadow: 0 0 34px 0 rgba(63, 66, 87, 0.1); }
 
