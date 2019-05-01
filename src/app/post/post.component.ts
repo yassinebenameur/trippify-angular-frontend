@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Post} from '../shared/models/post';
 import {UserService} from '../shared/services/user.service';
 import {Client} from '../shared/models/client';
@@ -16,7 +16,7 @@ declare let jQuery: any;
 })
 export class PostComponent implements OnInit {
 
-  private user: Client;
+  public user: Client;
   @Input() post: Post;
   editMode = false;
   comment = new Comment();

@@ -14,7 +14,7 @@ import {FileService} from '../shared/services/file.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  private user: Client;
+  public user: Client;
   trips: Trip[];
   newTrip: Trip = new Trip();
 

@@ -45,18 +45,9 @@ export class TripDetailsComponent implements OnInit {
   ngOnInit() {
     console.log(this.trip_id);
     this.getTripById(this.trip_id);
-    this.initSelect();
     const baseContext = this;
-    Utils.initializeUploadFile(Config.baseUrl + '/uploadMultipleFiles', this.userService.getToken(), '.file-input-post', true, true, 6, false);
 
-    const urls = [];
-    jQuery('.file-input-post').on('filebatchuploadsuccess', (event, data) => {
-      data.response.forEach(item => {
-        urls.push(item.fileDownloadUri);
-      });
-    });
-    baseContext.post.imageUrls = urls;
-
+    this.initPost();
   }
 
   getTripById(id: string) {
@@ -70,10 +61,37 @@ export class TripDetailsComponent implements OnInit {
     );
   }
 
+  initFileUploader() {
+    Utils.initializeUploadFile(Config.baseUrl + '/uploadMultipleFiles', this.userService.getToken(), '.file-input-post', true, true, 6, false);
+    let urls = [];
+
+    jQuery('.file-input-post').on('filebatchuploadsuccess', (event, data) => {
+      urls = [];
+      data.response.forEach(item => {
+        urls.push(item.fileDownloadUri);
+      });
+      this.post.imageUrls = urls;
+    });
+
+  }
+
+  initPost() {
+    this.post = new Post();
+    this.am_pm = '';
+    this.time = '';
+    this.initFileUploader();
+    this.initSelect();
+  }
+
   initSelect() {
     jQuery('.selectpicker').selectpicker();
 
   }
+
+  closeModal(modalId: string) {
+    jQuery(modalId).modal('toggle');
+  }
+
 
   arrayOne(n: number): any[] {
     return Array(n);
@@ -101,6 +119,7 @@ export class TripDetailsComponent implements OnInit {
         console.log('DAYS', this.trip.trip_days.findIndex(item => item.id == this.selectedDay_id));
         const day_index = this.trip.trip_days.findIndex(item => item.id == this.selectedDay_id);
         this.trip.trip_days[day_index] = data;
+        this.closeModal('#create-event');
 
         new Noty({
           theme: 'metroui',
@@ -111,7 +130,7 @@ export class TripDetailsComponent implements OnInit {
           text: 'Your post is saved !'
         }).show();
 
-
+        this.initPost();
       }
     );
   }
