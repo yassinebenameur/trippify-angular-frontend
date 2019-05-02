@@ -1,3 +1,179 @@
-<p>
-  feed works!
-</p>
+<div class="stunning-header bg-primary-opacity">
+
+
+  <div class="header-spacer--standard"></div>
+  <div class="stunning-header-content">
+    <h1 class="stunning-header-title">Welcome to Trippify</h1>
+    <ul class="breadcrumbs">
+      <li class="breadcrumbs-item">
+        <a href="#">Here is your feed</a>
+        <span class="icon breadcrumbs-custom"></span>
+      </li>
+      <li class="breadcrumbs-item active">
+        <span></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-bg-wrap stunning-header-bg1"></div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="ui-block responsive-flex1200">
+        <div class="ui-block-title">
+          <ul class="filter-icons">
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat2.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat15.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat9.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat4.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat6.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat26.png" alt="icon">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="../assets/img/icon-chat27.png" alt="icon">
+              </a>
+            </li>
+          </ul>
+          <div class="w-select">
+            <div class="title">Filter By:</div>
+            <fieldset class="form-group">
+              <select class="selectpicker form-control">
+                <option value="NU">All Categories</option>
+                <option value="NU">Favourite</option>
+                <option value="NU">Likes</option>
+              </select>
+            </fieldset>
+          </div>
+
+          <div class="w-select">
+            <fieldset class="form-group">
+              <select class="selectpicker form-control">
+                <option value="NU">Date (Descending)</option>
+                <option value="NU">Date (Ascending)</option>
+              </select>
+            </fieldset>
+          </div>
+
+          <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Filter</a>
+
+          <form class="w-search">
+            <div class="form-group with-button">
+              <input class="form-control" type="text" placeholder="Search Blog Posts......">
+              <button>
+                <svg class="olymp-magnifying-glass-icon">
+                  <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="blog-post-wrap medium-padding80">
+  <div class="container">
+    <div class="row sorting-container" id="posts-grid-1" data-layout="masonry">
+      <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12  sorting-item community" *ngFor="let trip of trips">
+        <div class="ui-block">
+
+
+          <!-- Post -->
+
+          <article class="hentry blog-post blog-post-v2">
+            <div class="post-thumb">
+              <a [routerLink]="'/trip-details/'+trip.id">
+                <img [src]="trip?.imageUrl" alt="photo"></a>
+            </div>
+            <div class="post-content">
+              <a href="#" class="post-category bg-blue-light">THE COMMUNITY</a>
+              <a [routerLink]="'/trip-details/'+trip.id" class="h4 post-title">{{trip.titre}}</a>
+
+              <div class="post__author author vcard inline-items">
+                <img [src]="trip?.traveller?.imageUrl" alt="author">
+
+                <div class="author-date not-uppercase">
+                  <a class="h6 post__author-name fn" href="#">{{trip?.traveller?.name}}</a>
+                  <div class="post__date">
+                    <time class="published" datetime="2017-03-24T18:18">
+                      7 hours ago
+                    </time>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="post-additional-info inline-items">
+
+                <ul class="friends-harmonic">
+                  <li>
+                    <a href="#">
+                      <img src="../assets/img/icon-chat27.png" alt="icon">
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="../assets/img/icon-chat2.png" alt="icon">
+                    </a>
+                  </li>
+                </ul>
+                <div class="names-people-likes">
+                  26
+                </div>
+
+                <div class="comments-shared">
+                  <a href="#" class="post-add-icon inline-items">
+                    <svg class="olymp-speech-balloon-icon">
+                      <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+                    </svg>
+                    <span>0</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- ... end Post -->
+
+        </div>
+      </div>
+
+    </div>
+
+    <a id="load-more-button" (click)="loadMore()" class="btn btn-control btn-more">
+      <svg class="olymp-three-dots-icon">
+        <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+      </svg>
+    </a>
+  </div>
+</section>

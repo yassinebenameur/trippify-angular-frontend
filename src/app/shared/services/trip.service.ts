@@ -25,6 +25,14 @@ export class TripService extends GenericService {
     });
   }
 
+  getTripsFeed(page: number) {
+    const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
+    const url = Config.baseUrlApi + '/trip/paged?page=' + page + '&size=12';
+    return this.http.get<any>(url, {
+      headers
+    });
+  }
+
   getTripById(id: string) {
     const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
     const url = Config.baseUrlApi + '/trip/' + id;
