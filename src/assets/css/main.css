@@ -133,7 +133,7 @@ Description: "HTML-template"
   right: 0;
   z-index: 21; }
   .header .page-title {
-    padding: 26px 50px 26px 100px;
+    padding: 20px 100px 26px 100px;
     text-transform: uppercase;
     float: left;
     height: 100%;
@@ -170,7 +170,7 @@ Description: "HTML-template"
 
 .header-spacer {
   display: block;
-  height: 110px; }
+  height: 70px; }
 
 .header-spacer-small {
   height: 70px; }
@@ -1859,7 +1859,7 @@ section {
   color: #fff; }
   .stunning-header .stunning-header-title {
     color: inherit;
-    font-size: 40px; }
+    font-size: 60px; }
   .stunning-header + * {
     margin-top: 40px; }
   .stunning-header .content-bg-wrap {

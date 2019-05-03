@@ -50,5 +50,13 @@ export class UserService extends GenericService {
     });
   }
 
+  getAllUsers() {
+    const headers = this.headers.set('Authorization', 'Bearer ' + this.getToken());
+    const url = Config.baseUrlApi + '/user';
+    return this.http.get<any>(url, {
+      headers
+    });
+  }
+
 
 }

@@ -33,6 +33,14 @@ export class TripService extends GenericService {
     });
   }
 
+  getTripsByKeyword(keyword: string) {
+    const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
+    const url = Config.baseUrlApi + '/trip/search?keyword=' + keyword;
+    return this.http.get<any>(url, {
+      headers
+    });
+  }
+
   getTripById(id: string) {
     const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
     const url = Config.baseUrlApi + '/trip/' + id;

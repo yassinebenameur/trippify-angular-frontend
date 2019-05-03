@@ -21,6 +21,7 @@ import {PostService} from './shared/services/post.service';
 import {CommentService} from './shared/services/comment.service';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {NzTimePickerModule} from 'ng-zorro-antd';
+import {CanActivateViaAuthGuard} from './shared/services/auth-guard.service';
 
 
 @NgModule({
@@ -51,7 +52,9 @@ import {NzTimePickerModule} from 'ng-zorro-antd';
     TripService,
     FileService,
     PostService,
-    CommentService
+    CommentService,
+    CanActivateViaAuthGuard
+
   ],
   bootstrap: [AppComponent]
 })

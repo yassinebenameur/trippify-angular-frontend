@@ -7,10 +7,11 @@ import {FeedComponent} from './feed/feed.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {PostComponent} from './post/post.component';
 import {TripDetailsComponent} from './trip-details/trip-details.component';
+import {CanActivateViaAuthGuard} from './shared/services/auth-guard.service';
 
 
 export const routes: Routes = [
-  {
+  { canActivate: [CanActivateViaAuthGuard],
     path: '',
     component: FullLayoutComponent,
 

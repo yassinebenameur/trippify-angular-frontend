@@ -27,19 +27,19 @@
 <header class="header " id="site-header">
 
   <div class="page-title">
-    <a routerLink="/" class="logo">
+    <a routerLink="/">
 
-      <div class="title-block">
-        <h6 class="logo-title">Trippify</h6>
-        <div class="sub-title">Share your journeys</div>
-      </div>
+
+      <img src="../assets/img/logo_trippify.png" style="width: 100px" alt="logo">
+
+
     </a>
   </div>
 
   <div class="header-content-wrapper">
     <form class="search-bar w-search notification-list friend-requests">
       <div class="form-group with-button">
-        <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+        <input class="form-control js-user-search2" placeholder="Search here people or pages..." type="text">
         <button>
           <svg class="olymp-magnifying-glass-icon">
             <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
@@ -473,18 +473,9 @@
                     <span>Profile Page</span>
                   </a>
                 </li>
-                <li>
-                  <a href="36-FavPage-SettingsAndCreatePopup.html">
-                    <svg class="olymp-star-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
-                         data-original-title="FAV PAGE">
-                      <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-star-icon"></use>
-                    </svg>
 
-                    <span>Create Fav Page</span>
-                  </a>
-                </li>
                 <li>
-                  <a>
+                  <a (click)="logout()" href="javascript:">
                     <svg class="olymp-logout-icon">
                       <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-logout-icon"></use>
                     </svg>
@@ -493,8 +484,6 @@
                   </a>
                 </li>
               </ul>
-
-
 
 
             </div>
@@ -973,7 +962,6 @@
   <!-- ... end  Tab panes -->
 
 </header>
-
 
 
 <!-- ... end Responsive Header-BP -->

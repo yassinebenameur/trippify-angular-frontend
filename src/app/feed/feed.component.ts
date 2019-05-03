@@ -10,6 +10,7 @@ import {Trip} from '../shared/models/trip';
 export class FeedComponent implements OnInit {
   trips: Trip[];
   page: number;
+  keyword = '';
 
   constructor(private tripService: TripService) {
   }
@@ -28,11 +29,29 @@ export class FeedComponent implements OnInit {
 
   }
 
+  onSearchClick() {
+    if (this.keyword === '') {
+      this.getTripsFeed(0);
+    } else {
+      this.getAllTripsByKeyword();
+    }
+
+  }
+
   loadMore() {
     this.page++;
     this.tripService.getTripsFeed(this.page).subscribe(
       (data) => {
         this.trips = this.trips.concat(data.content);
+      }
+    );
+  }
+
+
+  getAllTripsByKeyword() {
+    this.tripService.getTripsByKeyword(this.keyword).subscribe(
+      (data) => {
+        this.trips = data;
       }
     );
   }

@@ -83,10 +83,10 @@
 
           <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Filter</a>
 
-          <form class="w-search">
+          <form class="w-search" (ngSubmit)="onSearchClick()">
             <div class="form-group with-button">
-              <input class="form-control" type="text" placeholder="Search Blog Posts......">
-              <button>
+              <input class="form-control" type="text" placeholder="Search Trips......" [(ngModel)]="keyword" name="keyword">
+              <button (click)="onSearchClick()">
                 <svg class="olymp-magnifying-glass-icon">
                   <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
                 </svg>
