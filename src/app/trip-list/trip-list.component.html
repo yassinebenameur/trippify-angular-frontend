@@ -13,7 +13,7 @@
 
           <div class="photo-album-wrapper">
 
-            <div class="photo-album-item-wrap col-4-width" *ngFor="let trip of trips">
+            <div class="photo-album-item-wrap col-4-width" *ngFor="let trip of trips;let i = index">
 
 
               <div class="photo-album-item" data-mh="album-item">
@@ -94,7 +94,7 @@
 
                 <div class="control-block-button post-control-button">
 
-                  <a href="#" class="btn btn-control">
+                  <a href="javascript:" class="btn btn-control" (click)="onDeletePostClick(i)">
                     <i style="font-size:10px" class="fa">&#xf00d;</i>
                   </a>
 

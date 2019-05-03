@@ -5,6 +5,7 @@ import {FileService} from '../shared/services/file.service';
 import {Utils} from '../shared/utils';
 import {Config} from '../shared/config';
 import {UserService} from '../shared/services/user.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 declare var require: any;
@@ -41,6 +42,8 @@ export class TripListComponent implements OnInit {
         baseContext.newTrip.imageUrl = data.response.fileDownloadUri;
       }
     });
+
+
   }
 
   getAllTrips() {
@@ -73,6 +76,53 @@ export class TripListComponent implements OnInit {
     );
 
 
+  }
+
+  onDeletePostClick(index: number) {
+
+    let n = new Noty({
+      theme: 'metroui',
+      text: 'Are you sure you want to delete this trip ? ',
+      buttons: [
+        Noty.button('YES', 'btn btn-primary', () => {
+          console.log('button 1 clicked');
+
+          this.deleteTrip(index);
+          n.close();
+        }, {id: 'button1', 'data-status': 'ok'}),
+
+        Noty.button('NO', 'btn btn-error', () => {
+          console.log('button 2 clicked');
+          n.close();
+        })
+      ]
+    }).show();
+    console.log(n);
+  }
+
+  deleteTrip(index: number) {
+    this.tripService.deleteTripById(this.trips[index].id).subscribe(
+      () => {
+        this.trips.splice(index, 1);
+        new Noty({
+          theme: 'metroui',
+          type: 'success',
+          layout: 'topRight',
+          timeout: 5000,
+          progressBar: true,
+          text: 'Your trip is deleted !'
+        }).show();
+      }, () => {
+        new Noty({
+          theme: 'metroui',
+          type: 'error',
+          layout: 'topRight',
+          timeout: 5000,
+          progressBar: true,
+          text: 'Error : your trip wasn\'t deleted'
+        }).show();
+      }
+    );
   }
 
 

@@ -7,7 +7,6 @@ import {Post} from '../shared/models/post';
 import {PostService} from '../shared/services/post.service';
 import {Config} from '../shared/config';
 import {UserService} from '../shared/services/user.service';
-import {injectTemplateRef} from '@angular/core/src/render3/view_engine_compatibility';
 
 declare var require: any;
 
@@ -48,6 +47,8 @@ export class TripDetailsComponent implements OnInit {
     const baseContext = this;
 
     this.initPost();
+
+
   }
 
   getTripById(id: string) {

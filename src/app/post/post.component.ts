@@ -4,9 +4,14 @@ import {UserService} from '../shared/services/user.service';
 import {Client} from '../shared/models/client';
 import {Comment} from '../shared/models/comment';
 import {CommentService} from '../shared/services/comment.service';
+import {PostService} from '../shared/services/post.service';
+
+declare var require: any;
 
 
 declare let jQuery: any;
+const Noty = require('noty');
+
 
 
 @Component({
@@ -22,7 +27,8 @@ export class PostComponent implements OnInit {
   comment = new Comment();
 
   constructor(private userService: UserService,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private postService: PostService) {
   }
 
   ngOnInit() {
@@ -66,6 +72,30 @@ export class PostComponent implements OnInit {
       }
     );
 
+  }
+
+  onDeletePostClick(id: number) {
+    this.postService.deletePostById(id).subscribe(
+      () => {
+        new Noty({
+          theme: 'metroui',
+          type: 'success',
+          layout: 'topRight',
+          timeout: 5000,
+          progressBar: true,
+          text: 'Your post is deleted !'
+        }).show();
+      }, () => {
+        new Noty({
+          theme: 'metroui',
+          type: 'error',
+          layout: 'topRight',
+          timeout: 5000,
+          progressBar: true,
+          text: 'Error : your post wasn\'t deleted'
+        }).show();
+      }
+    );
   }
 
 }

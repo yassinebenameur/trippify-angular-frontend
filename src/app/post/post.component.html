@@ -14,10 +14,10 @@
     </svg>
     <ul class="more-dropdown">
       <li>
-        <a (click)="onClickEditPost()">Edit Post</a>
+        <a href="javascript:" (click)="onClickEditPost()">Edit Post</a>
       </li>
       <li>
-        <a href>Delete Post</a>
+        <a href="javascript:" (click)="onDeletePostClick(post.id)">Delete Post</a>
       </li>
 
     </ul>
@@ -34,7 +34,8 @@
 
   <form class="form-group label-floating">
     <label class="control-label">Description</label>
-    <input class="form-control" type="text" [value]="post.description"  name="description" [(ngModel)]="post.description">
+    <input class="form-control" type="text" [value]="post.description" name="description"
+           [(ngModel)]="post.description">
     <span class="material-input"></span></form>
 
   <div class="align-right">
@@ -50,7 +51,7 @@
 <p *ngIf="!editMode">{{post.description}}</p>
 
 
-<div class="post-block-photo js-zoom-gallery" >
+<div class="post-block-photo js-zoom-gallery">
   <a *ngFor="let photo of post.imageUrls" [href]="photo" class="col col-3-width"><img [src]="photo" alt="photo"></a>
 
 </div>
@@ -94,7 +95,7 @@
 
     <p>{{comment.content}}</p>
 
-    <a  class="post-add-icon inline-items">
+    <a class="post-add-icon inline-items">
       <svg class="olymp-heart-icon">
         <use xlink:href="../assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
       </svg>

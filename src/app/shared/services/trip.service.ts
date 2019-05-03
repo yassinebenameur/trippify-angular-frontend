@@ -57,4 +57,12 @@ export class TripService extends GenericService {
     });
   }
 
+  deleteTripById(id: number) {
+    const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
+    const url = Config.baseUrlApi + '/trip?id=' + id;
+    return this.http.delete<any>(url, {
+      headers
+    });
+  }
+
 }

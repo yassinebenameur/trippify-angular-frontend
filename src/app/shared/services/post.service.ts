@@ -27,4 +27,12 @@ export class PostService extends GenericService {
     });
   }
 
+  deletePostById(id: number) {
+    const headers = this.headers.set('Authorization', 'Bearer ' + this.userSerivce.getToken());
+    const url = Config.baseUrlApi + '/post?id=' + id;
+    return this.http.delete<any>(url, {
+      headers
+    });
+  }
+
 }
